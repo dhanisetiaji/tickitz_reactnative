@@ -1,0 +1,58 @@
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Tabs from './Tabs';
+import Register from '../screens/auth/Register';
+import Login from '../screens/auth/Login';
+import DetailScreen from '../screens/Detail';
+import EditProfileScreen from '../screens/profile/EditProfile';
+import ChangePasswordScreen from '../screens/profile/ChangePassword';
+import OrderHistoryScreen from '../screens/profile/OrderHistory';
+import ShowImageScreen from '../screens/profile/ShowImage';
+import { Pressable, Text } from 'react-native';
+
+const Stack = createNativeStackNavigator();
+
+const Routes = () => {
+    return (
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_bottom',
+                headerShadowVisible: true,
+                headerStyle: { backgroundColor: '#fff' },
+                headerTitleStyle: { color: '#5F2EEA' },
+                headerTintColor: '#5F2EEA',
+                headerTitleAlign: 'center',
+            }}>
+                <Stack.Screen name="Home"
+                    component={Tabs}
+                />
+                <Stack.Screen name="Register" component={Register} />
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Detail Movie" component={DetailScreen} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                }} />
+                <Stack.Screen name="Edit Profile" component={EditProfileScreen} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                }} />
+                <Stack.Screen name="Change Password" component={ChangePasswordScreen} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                }} />
+                <Stack.Screen name="Order History" component={OrderHistoryScreen} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                }} />
+                <Stack.Screen name="Profile Picture" component={ShowImageScreen} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                }} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
+}
+
+export default Routes
