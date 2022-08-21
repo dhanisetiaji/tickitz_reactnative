@@ -1,26 +1,45 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, SafeAreaView, Text, View } from 'react-native'
 import { commonStyle } from '../../../helpers/commonStyle'
+import Carousel from 'react-native-snap-carousel';
+
 
 const BannerSection = () => {
-    return (
-        <View style={[commonStyle.container, { marginTop: 30 }]}>
-            <Text style={{ ...commonStyle.textSecondary, fontSize: 16 }}>Nearest Cinema, Newest Movie,</Text>
-            <Text style={{
-                color: '#5F2EEA',
-                fontSize: 50,
-                fontWeight: 'bold',
-            }}>Find out now!</Text>
-            <Image source={require('../../../assets/image/banners.png')}
-                resizeMode='contain'
-                style={{
-                    width: '100%',
-                    height: 450,
-                    alignSelf: 'center',
-                }}
+    const image = [
+        'https://cdn.cgv.id/uploads/promotions/2208/PR202208181501493411.jpg',
+        'https://cdn.cgv.id/uploads/promotions/2208/PR202208191649464661.jpg',
+        'https://cdn.cgv.id/uploads/promotions/2208/PR202208091246185217.jpg'
+    ]
+
+    return (<>
+        <SafeAreaView style={{
+            alignItems: 'center',
+            width: '100%',
+            position: 'relative',
+            zIndex: 1,
+            top: 50,
+        }}>
+            <Carousel
+                layout='tinder'
+                layoutCardOffset={`0`}
+                autoplay={true}
+                loop={true}
+                autoplayDelay={3000}
+                activeAnimationType={'decay'}
+                data={image}
+                renderItem={({ item }) => (<>
+                    <Image source={{ uri: item }} style={{
+                        width: '100%',
+                        height: 100,
+                        resizeMode: 'contain',
+                    }} />
+                </>)}
+                sliderWidth={300}
+                itemWidth={300}
             />
-        </View>
-    )
+        </SafeAreaView>
+
+    </>)
 }
 
 export default BannerSection

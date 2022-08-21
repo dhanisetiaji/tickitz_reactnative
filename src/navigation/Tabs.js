@@ -7,6 +7,7 @@ import MoviesScreen from '../screens/Movies';
 import ProfileScreen from '../screens/profile';
 import { useSelector } from 'react-redux';
 import NotificationScreen from '../screens/Notification';
+import AuthScreen from '../screens/auth';
 
 
 
@@ -42,8 +43,8 @@ const Tabs = () => {
                         <Image source={require('../../assets/image/icons/home.png')}
                             resizeMode='contain'
                             style={{
-                                width: 25,
-                                height: 25,
+                                width: 28,
+                                height: 28,
                                 tintColor: focused ? '#5F2EEA' : '#4E4B66',
                             }} />
                     </>)
@@ -75,19 +76,35 @@ const Tabs = () => {
                     </>)
                 }}
             />
-            <Tab.Screen name="Profile" component={isLogin ? ProfileScreen : Login}
-                options={{
-                    tabBarIcon: ({ focused }) => (<>
-                        <Image source={require('../../assets/image/icons/profile.png')}
-                            resizeMode='contain'
-                            style={{
-                                width: 25,
-                                height: 25,
-                                tintColor: focused ? '#5F2EEA' : '#4E4B66'
-                            }} />
-                    </>)
-                }}
-            />
+            {isLogin ? (
+                <Tab.Screen name="Profile" component={ProfileScreen}
+                    options={{
+                        tabBarIcon: ({ focused }) => (<>
+                            <Image source={require('../../assets/image/icons/profile.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? '#5F2EEA' : '#4E4B66'
+                                }} />
+                        </>)
+                    }}
+                />
+            ) : (
+                <Tab.Screen name="Auth" component={AuthScreen}
+                    options={{
+                        tabBarIcon: ({ focused }) => (<>
+                            <Image source={require('../../assets/image/icons/profile.png')}
+                                resizeMode='contain'
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? '#5F2EEA' : '#4E4B66'
+                                }} />
+                        </>)
+                    }}
+                />
+            )}
         </Tab.Navigator>
     )
 }

@@ -24,9 +24,8 @@ const Register = ({ navigation }) => {
 
     return (<>
         <ScrollView style={{ backgroundColor: '#fff' }}>
-            <HeaderComponent />
             <View style={[commonStyle.container]}>
-                <Text style={[commonStyle.textBlack, { fontSize: 26, fontWeight: 'bold', marginBottom: 5 }]}>Sign Up</Text>
+                <Text style={[commonStyle.textBlack, { fontSize: 26, fontWeight: 'bold', marginBottom: 5, marginTop: 10 }]}>Sign Up</Text>
                 <Text style={[commonStyle.textSecondary, { fontSize: 15, marginBottom: 20 }]}>Fill your additional details</Text>
                 <View style={{ marginBottom: 20 }}>
                     <Text style={[commonStyle.textBlack, {

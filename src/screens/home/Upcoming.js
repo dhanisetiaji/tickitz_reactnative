@@ -62,6 +62,7 @@ const UpComingSection = ({ navigation }) => {
                 <Carousel
                     layout='default'
                     inactiveSlideOpacity={0.5}
+                    loop={true}
                     data={Movies.results}
                     renderItem={({ item }) => (<>
                         <Pressable android_ripple={{ color: '#333' }} onPress={() => navigation.navigate('Detail Movie', {

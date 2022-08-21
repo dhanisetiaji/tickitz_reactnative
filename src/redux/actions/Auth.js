@@ -58,6 +58,7 @@ export const GetAuthLogin = (formLogin) => {
                     text2: 'Login success 👋'
                 });
                 dispatch(GetAuth(res.data))
+                dispatch(GetDetailUserAuth(res.data.data.token))
             }
         }).catch((err) => {
             if (!err.response.data.message) {

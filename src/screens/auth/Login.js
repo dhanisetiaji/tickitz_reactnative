@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
 
     useEffect(() => {
         if (isLogin) {
-            navigation.navigate('Home')
+            navigation.navigate('Profile')
         }
     }, [dispatch, isLogin])
 
@@ -24,9 +24,8 @@ const Login = ({ navigation }) => {
     }
     return (<>
         <ScrollView style={{ backgroundColor: '#fff' }}>
-            <HeaderComponent />
             <View style={[commonStyle.container]}>
-                <Text style={[commonStyle.textBlack, { fontSize: 26, fontWeight: 'bold', marginBottom: 5 }]}>Sign in</Text>
+                <Text style={[commonStyle.textBlack, { fontSize: 26, fontWeight: 'bold', marginBottom: 5, marginTop: 10 }]}>Sign in</Text>
                 <Text style={[commonStyle.textSecondary, { fontSize: 15, marginBottom: 20 }]}>Sign in with your data that you entered during your registration</Text>
                 <View style={{ marginBottom: 20 }}>
                     <Text style={[commonStyle.textBlack, {

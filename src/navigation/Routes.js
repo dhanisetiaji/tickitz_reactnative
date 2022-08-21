@@ -28,8 +28,16 @@ const Routes = () => {
                 <Stack.Screen name="Home"
                     component={Tabs}
                 />
-                <Stack.Screen name="Register" component={Register} />
-                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Register" component={Register} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                    headerTitle: 'Sign Up',
+                }} />
+                <Stack.Screen name="Login" component={Login} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                    headerTitle: 'Sign In',
+                }} />
                 <Stack.Screen name="Detail Movie" component={DetailScreen} options={{
                     animation: 'slide_from_right',
                     headerShown: true,

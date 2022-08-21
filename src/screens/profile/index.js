@@ -12,10 +12,13 @@ const ProfileScreen = ({ navigation }) => {
 
     const [refetch, setRefetch] = useState(false)
 
-    const { GetAuth, GetDetail, loading } = useSelector(state => state.auth)
+    const { GetAuth, GetDetail, loading, isLogin } = useSelector(state => state.auth)
     console.log(GetDetail, 'GetDetail');
 
     useEffect(() => {
+        if (!isLogin) {
+            navigation.navigate('Home')
+        }
         dispatch(GetDetailUserAuth(GetAuth.data.token))
     }, [dispatch, refetch])
     console.log(GetDetail, 'GetDetail');

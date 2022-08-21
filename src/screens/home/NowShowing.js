@@ -12,7 +12,13 @@ const NowShowingSection = ({ navigation }) => {
 
 
     return (<>
-        <View style={{ backgroundColor: '#D6D8E7', paddingVertical: 35 }}>
+        <View style={{
+            backgroundColor: '#D6D8E7',
+            paddingVertical: 35,
+            paddingTop: 70,
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20,
+        }}>
             <View style={[commonStyle.container]}>
                 <View style={[commonStyle.flexRow, commonStyle.flexBetween]}>
                     <Text style={{
@@ -20,15 +26,18 @@ const NowShowingSection = ({ navigation }) => {
                         fontSize: 16,
                         fontWeight: 'bold'
                     }}>Now Showing</Text>
-                    <Text
-                        style={{
-                            color: '#5F2EEA',
-                            fontSize: 14,
-                        }}
-                    >View All</Text>
+                    <Pressable onPress={() => navigation.navigate('Search')}>
+                        <Text
+                            style={{
+                                color: '#5F2EEA',
+                                fontSize: 14,
+                            }}
+                        >View All</Text>
+                    </Pressable>
                 </View>
                 <Carousel
                     layout='default'
+                    loop={true}
                     inactiveSlideOpacity={0.5}
                     data={Movies.results}
                     renderItem={({ item }) => (<>
