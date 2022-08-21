@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
 
     useEffect(() => {
         if (isLogin) {
-            navigation.navigate('Profile')
+            navigation.navigate('Home')
         }
     }, [dispatch, isLogin])
 
