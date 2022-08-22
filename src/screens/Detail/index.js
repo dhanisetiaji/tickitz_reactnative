@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, FlatList, Image, SectionList, Pressable, RefreshControl } from 'react-native'
+import { View, Text, FlatList, Image, SectionList, Pressable, RefreshControl, StyleSheet } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import { GetMovieById } from '../../redux/actions/Movies';
 import { commonStyle } from '../../../helpers/commonStyle'
@@ -10,7 +10,16 @@ import moment from 'moment';
 
 const urlImage = 'https://test.dhanz.me/static'
 
-const DetailScreen = ({ route }) => {
+const styless = StyleSheet.create({
+    bgDark: {
+        backgroundColor: '#D6D8E7',
+    },
+    bgWhite: {
+        backgroundColor: '#fff',
+    }
+})
+
+const DetailScreen = ({ route, navigation }) => {
     const {
         id,
         title,
@@ -25,23 +34,20 @@ const DetailScreen = ({ route }) => {
     } = route.params;
     const dispatch = useDispatch();
     const [value, setValue] = useState(null),
-        [refetch, setRefetch] = useState(false)
+        [refetch, setRefetch] = useState(false),
+        [hours, setHours] = useState([
+            '08.00', '10.00', '13.00', '15.00', '17.00', '19.00', '21.00', '23.00'
+        ]),
+        [selectHour, setSelectHour] = useState()
 
-
-    // const { loading, Detail } = useSelector(state => state.movies)
-
-
-
-    // useEffect(() => {
-    //     dispatch(GetMovieById(id));
-    // }, [dispatch, refetch])
+    const onSelect = (item) => {
+        setSelectHour(item);
+    }
 
     return (
         !id ? <View></View> : (
 
             <SectionList
-                // refreshControl={<RefreshControl refreshing={loading}
-                //     onRefresh={() => { setRefetch(!refetch) }} />}
                 style={{
                     backgroundColor: '#fff'
                 }}
@@ -242,7 +248,7 @@ const DetailScreen = ({ route }) => {
                                     )
                                 }
                             />
-                            <View style={{
+                            {/* <View style={{
                                 marginTop: 20,
                                 backgroundColor: '#FFF',
                                 borderRadius: 10,
@@ -265,18 +271,20 @@ const DetailScreen = ({ route }) => {
                                     marginBottom: 10,
                                 }}>Whatever street No.12. South Purwokerto</Text>
                                 <FlatList
-                                    data={[
-                                        '08.00', '10.00', '13.00', '15.00', '17.00', '19.00', '21.00', '23.00'
-                                    ]}
+                                    data={hours}
                                     numColumns={4}
                                     listKey={(index) => `${index}`}
                                     renderItem={({ item: hour }) => (
                                         <View style={{
                                             marginHorizontal: 10,
                                         }}>
-                                            <Pressable android_ripple={{
+                                            <Pressable onPress={() => onSelect(hour)} android_ripple={{
                                                 color: '#333',
-                                            }}>
+                                            }}
+                                                style={
+                                                    selectHour.includes(hour) ? styless.bgDark : styless.bgWhite
+                                                }
+                                            >
                                                 <Text style={{
                                                     paddingHorizontal: 10,
                                                     paddingVertical: 10,
@@ -294,7 +302,9 @@ const DetailScreen = ({ route }) => {
                                     <Text style={{ ...commonStyle.textSecondary }}>Price</Text>
                                     <Text style={{ ...commonStyle.textBlack }}>Rp. 40.000/seat</Text>
                                 </View>
-                                <Pressable style={{
+                                <Pressable onPress={() => navigation.navigate('Orders', {
+                                    hour: selectHour,
+                                })} style={{
                                     ...commonStyle.button,
                                     borderRadius: 2,
                                     height: 40,
@@ -304,7 +314,7 @@ const DetailScreen = ({ route }) => {
                                 }} android_ripple={{ color: '#fff' }}>
                                     <Text style={{ ...commonStyle.textWhite }}>Book Now</Text>
                                 </Pressable>
-                            </View>
+                            </View> */}
                             <View style={{
                                 marginTop: 20,
                                 backgroundColor: '#FFF',
@@ -328,18 +338,20 @@ const DetailScreen = ({ route }) => {
                                     marginBottom: 10,
                                 }}>Whatever street No.12. South Purwokerto</Text>
                                 <FlatList
-                                    data={[
-                                        '08.00', '10.00', '13.00', '15.00', '17.00', '19.00', '21.00', '23.00'
-                                    ]}
+                                    data={hours}
                                     numColumns={4}
                                     listKey={(index) => `${index}`}
                                     renderItem={({ item: hour }) => (
                                         <View style={{
                                             marginHorizontal: 10,
                                         }}>
-                                            <Pressable android_ripple={{
+                                            <Pressable onPress={() => onSelect(hour)} android_ripple={{
                                                 color: '#333',
-                                            }}>
+                                            }}
+                                                style={
+                                                    selectHour === hour ? styless.bgDark : styless.bgWhite
+                                                }
+                                            >
                                                 <Text style={{
                                                     paddingHorizontal: 10,
                                                     paddingVertical: 10,
@@ -357,7 +369,11 @@ const DetailScreen = ({ route }) => {
                                     <Text style={{ ...commonStyle.textSecondary }}>Price</Text>
                                     <Text style={{ ...commonStyle.textBlack }}>Rp. 40.000/seat</Text>
                                 </View>
-                                <Pressable style={{
+                                <Pressable onPress={() => navigation.navigate('Orders', {
+                                    hour: selectHour,
+                                    title: title,
+                                    date: release_date,
+                                })} style={{
                                     ...commonStyle.button,
                                     borderRadius: 2,
                                     height: 40,
@@ -374,7 +390,6 @@ const DetailScreen = ({ route }) => {
                                 textAlign: 'center',
                             }}>View More</Text>
                         </View>
-                        <FooterComponent />
                     </>)
                 }}
             />

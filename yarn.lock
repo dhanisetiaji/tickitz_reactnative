@@ -794,6 +794,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@develoka/angka-rupiah-js@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@develoka/angka-rupiah-js/-/angka-rupiah-js-1.0.3.tgz#5ae32fe0fbe47431a15a117ba371f5486a8a4967"
+  integrity sha512-dkWuclc7reZd6eFGOnnm8vwWIkMbGdceSUILrJKMf2sBhOxc5/J169p2vTS1orX3dRoEZtZqb53ajKKv9zVT5A==
+
 "@egjs/hammerjs@^2.0.17":
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/@egjs/hammerjs/-/hammerjs-2.0.17.tgz#5dc02af75a6a06e4c2db0202cae38c9263895124"

@@ -21,7 +21,7 @@ const BannerSection = () => {
         }}>
             <Carousel
                 layout='tinder'
-                layoutCardOffset={`0`}
+                layoutCardOffset={0}
                 autoplay={true}
                 loop={true}
                 autoplayDelay={3000}

@@ -29,7 +29,7 @@ const MoviesScreen = ({ navigation }) => {
 
     useEffect(() => {
         dispatch(GetMoviesAll(params))
-    }, [dispatch, refetch, params])
+    }, [dispatch, params])
 
     const handleSearch = (text) => {
         setParams({
@@ -129,7 +129,7 @@ const MoviesScreen = ({ navigation }) => {
                                 height: 40,
                                 marginVertical: 5,
                             }}>
-                                <TextInput onChangeText={(text) => handleSearch(text)} placeholder='Search Movie Name' />
+                                <TextInput autoCorrect={false} onChangeText={(text) => handleSearch(text)} placeholder='Search Movie Name' />
                             </View>
                         </View>
                         <FlatList
@@ -164,6 +164,9 @@ const MoviesScreen = ({ navigation }) => {
                                 )}
                             </>)}
                         />
+                        {params.q ? (
+                            <Text>Searching for <Text style={{ fontWeight: 'bold' }}>{params.q} </Text>:</Text>
+                        ) : ('')}
                         <FlatList
                             contentContainerStyle={{ flexGrow: 1 }}
                             data={All.results}

@@ -10,6 +10,8 @@ import ChangePasswordScreen from '../screens/profile/ChangePassword';
 import OrderHistoryScreen from '../screens/profile/OrderHistory';
 import ShowImageScreen from '../screens/profile/ShowImage';
 import { Pressable, Text } from 'react-native';
+import OrderScreen from '../screens/Orders/OrderScreen';
+import PaymentScreen from '../screens/Orders/PaymentScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +57,14 @@ const Routes = () => {
                     headerShown: true,
                 }} />
                 <Stack.Screen name="Profile Picture" component={ShowImageScreen} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                }} />
+                <Stack.Screen name="Orders" component={OrderScreen} options={{
+                    animation: 'slide_from_right',
+                    headerShown: true,
+                }} />
+                <Stack.Screen name="Payment" component={PaymentScreen} options={{
                     animation: 'slide_from_right',
                     headerShown: true,
                 }} />
