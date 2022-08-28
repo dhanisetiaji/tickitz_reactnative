@@ -22,12 +22,14 @@ const requestCameraPermission = async () => {
             }
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-            console.log("Camera permission given");
+            // console.log("Camera permission given");
         } else {
-            console.log("Camera permission denied");
+            // console.log("Camera permission denied");
+            ToastAndroid.showWithGravity('Camera permission denied', ToastAndroid.SHORT, ToastAndroid.CENTER)
         }
     } catch (err) {
-        console.warn(err);
+        // console.warn(err);
+        ToastAndroid.showWithGravity('Camera permission denied', ToastAndroid.SHORT, ToastAndroid.CENTER)
     }
 };
 
@@ -40,8 +42,8 @@ const ShowImageScreen = ({ route }) => {
 
     const { GetAuth } = useSelector(state => state.auth)
 
-    const launchCameraAction = () => {
-        requestCameraPermission()
+    const launchCameraAction = async () => {
+        await requestCameraPermission();
         const options = {
             cameraType: 'front',
             mediaType: 'photo',

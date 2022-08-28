@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 import styles from './NetworkStyle';
 import Modal from 'react-native-modal';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,9 +27,9 @@ const NetworkModal = () => {
 
 
     const Button = ({ children, ...props }) => (
-        <TouchableOpacity style={styles.button} {...props}>
+        <Pressable android_ripple={{ color: '#333' }} style={styles.button} {...props}>
             <Text style={styles.buttonText}>{children}</Text>
-        </TouchableOpacity>
+        </Pressable>
     );
     return (
         <Modal isVisible={isOffline} style={styles.modal} animationInTiming={600}>

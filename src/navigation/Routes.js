@@ -12,6 +12,7 @@ import ShowImageScreen from '../screens/profile/ShowImage';
 import { Pressable, Text } from 'react-native';
 import OrderScreen from '../screens/Orders/OrderScreen';
 import PaymentScreen from '../screens/Orders/PaymentScreen';
+import SuccessScreen from '../screens/Orders/SuccessScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +68,10 @@ const Routes = () => {
                 <Stack.Screen name="Payment" component={PaymentScreen} options={{
                     animation: 'slide_from_right',
                     headerShown: true,
+                    headerShadowVisible: false,
+                }} />
+                <Stack.Screen name="success" component={SuccessScreen} options={{
+                    animation: 'slide_from_right',
                 }} />
             </Stack.Navigator>
         </NavigationContainer>

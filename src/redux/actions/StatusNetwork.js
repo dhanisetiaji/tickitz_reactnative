@@ -24,7 +24,7 @@ export const GetStatusOn = (data) => {
         } else {
             axios({
                 method: 'get',
-                url: `${urlAPI}/movies?page=17&limit=1`,
+                url: `${urlAPI}/movies?page=1&limit=1`,
             }).then((response) => {
                 if (response.status === 200) {
                     dispatch(GetSuccess(false))
