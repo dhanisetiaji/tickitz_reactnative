@@ -26,16 +26,17 @@
 
 ## About The Project
 
-Aplikasi mobile untuk tiket bioskop online menggunakan react native
+An mobile application that is used to book tickets such as selecting movies, searching for movies, managing accounts, managing bookings, notification, and buying movie tickets.
 
 ### Feature
 
-- Menggunakan redux ​ 
-- Melihat semua movie, mencari movie
-- Melihat movie berdasarkan category​
+- Redux ​ 
+- Notification
+- Read Movie,Search Movie
+- See Movie by Category​
 - Order Movie​
-- User dapat memilih tempat duduk​
-- dan lain lain​
+- User can choose seat cinema​
+- etc​
 
 
 ### Related
@@ -44,7 +45,7 @@ Aplikasi mobile untuk tiket bioskop online menggunakan react native
 
 ## Demo
 
-[Demo app](###) - Cooming Soon
+[Download app](https://github.com/dhanisetiaji/tickitz_reactnative/tree/master/sourceAPK)
 ### Screenshot
 <!-- kalau bisa dibuat tabel antara tampilan web dan mobile -->
 ![landing](https://raw.githubusercontent.com/dhanisetiaji/tickitz_reactnative/master/screenshot/Stop%20Start%20Continue%20Retrospective%20Whiteboard%20in%20Purple%20Basic%20Style.png)
