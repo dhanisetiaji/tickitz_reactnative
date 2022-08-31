@@ -14,8 +14,8 @@ const NotificationScreen = ({ navigation }) => {
     const { Notification, loading } = useSelector(state => state.users)
 
     useEffect(() => {
-        dispatch(GetNotification(GetAuth.data.token))
         const unsubscribe = navigation.addListener('tabPress', (e) => {
+            dispatch(GetNotification(GetAuth.data.token))
             dispatch(ChangeNotifStatus(GetAuth.data.token))
             dispatch(GetNotifStatus(GetAuth.data.token))
         });
