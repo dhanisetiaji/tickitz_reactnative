@@ -9,6 +9,7 @@ import UpComingSection from './Upcoming'
 import { GetMovies } from '../../redux/actions/Movies'
 import { useSelector, useDispatch } from 'react-redux'
 import NetworkModal from '../../components/Network'
+import { GetNotifStatus } from '../../redux/actions/Users'
 
 
 
@@ -21,12 +22,16 @@ const HomeScreen = ({ navigation }) => {
             orderBy: 'asc',
         })
 
+    const { isLogin, GetAuth } = useSelector(state => state.auth)
     const { loading } = useSelector(state => state.movies)
     const { isOffline } = useSelector(state => state.statusnetwork)
 
 
 
     useEffect(() => {
+        if (isLogin) {
+            dispatch(GetNotifStatus(GetAuth.data.token))
+        }
         dispatch(GetMovies(params))
     }, [dispatch, refetch, isOffline])
 

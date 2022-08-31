@@ -32,7 +32,7 @@ const Register = ({ navigation }) => {
                         fontSize: 16, marginBottom: 10, color: '#4E4B66',
                         fontWeight: 'light'
                     }]}>First Name :</Text>
-                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2, padding: 5 }}>
+                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2 }}>
                         <TextInput onChangeText={(text) => setParams(prevData => ({ ...prevData, firstName: text }))} placeholder='Write your first name' style={{ fontSize: 15 }} autoCapitalize='none'
                         />
                     </View>
@@ -42,7 +42,7 @@ const Register = ({ navigation }) => {
                         fontSize: 16, marginBottom: 10, color: '#4E4B66',
                         fontWeight: 'light'
                     }]}>Last Name :</Text>
-                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2, padding: 5 }}>
+                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2 }}>
                         <TextInput onChangeText={(text) => setParams(prevData => ({ ...prevData, lastName: text }))} placeholder='Write your last name' style={{ fontSize: 15 }} autoCapitalize='none'
                         />
                     </View>
@@ -52,7 +52,7 @@ const Register = ({ navigation }) => {
                         fontSize: 16, marginBottom: 10, color: '#4E4B66',
                         fontWeight: 'light'
                     }]}>Phone Number :</Text>
-                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2, padding: 5 }}>
+                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2 }}>
                         <TextInput onChangeText={(text) => setParams(prevData => ({ ...prevData, phone: text }))} placeholder='Write your phone number' style={{ fontSize: 15 }} autoCapitalize='none'
                             keyboardType='numeric' />
                     </View>
@@ -62,7 +62,7 @@ const Register = ({ navigation }) => {
                         fontSize: 16, marginBottom: 10, color: '#4E4B66',
                         fontWeight: 'light'
                     }]}>Email :</Text>
-                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2, padding: 5 }}>
+                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2 }}>
                         <TextInput onChangeText={(text) => setParams(prevData => ({ ...prevData, email: text }))} placeholder='Write your email' style={{ fontSize: 15 }} autoCapitalize='none'
                             keyboardType='email-address' />
                     </View>
@@ -72,7 +72,7 @@ const Register = ({ navigation }) => {
                         fontSize: 16, marginBottom: 10, color: '#4E4B66',
                         fontWeight: 'light'
                     }]}>Password :</Text>
-                    <View style={[commonStyle.flexRow, { borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2, padding: 5 }]}>
+                    <View style={[commonStyle.flexRow, { borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2 }]}>
                         <TextInput onChangeText={(text) => setParams(prevData => ({ ...prevData, password: text }))} placeholder='Write your password' style={{ fontSize: 15, flex: 1 }} autoCapitalize='none'
                             secureTextEntry={showPassword ? false : true} />
                         <Text onPress={() => setShowPassword(!showPassword)} style={{

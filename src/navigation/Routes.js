@@ -16,9 +16,13 @@ import SuccessScreen from '../screens/Orders/SuccessScreen';
 
 const Stack = createNativeStackNavigator();
 
+const linking = {
+    prefixes: ['https://dhanz.me', 'tickitz://home'],
+}
+
 const Routes = () => {
     return (
-        <NavigationContainer>
+        <NavigationContainer linking={linking}>
             <Stack.Navigator screenOptions={{
                 headerShown: false,
                 animation: 'slide_from_bottom',

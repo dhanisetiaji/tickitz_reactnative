@@ -4,6 +4,8 @@ import { commonStyle } from '../../../helpers/commonStyle'
 import HeaderComponent from './components/Header'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetAuthLogin } from '../../redux/actions/Auth'
+import messaging from '@react-native-firebase/messaging';
+
 
 const Login = ({ navigation }) => {
     const dispatch = useDispatch()
@@ -14,6 +16,13 @@ const Login = ({ navigation }) => {
     const { isLogin } = useSelector(state => state.auth)
 
     useEffect(() => {
+        messaging()
+            .getToken().then(token => {
+                setParams(prevData => ({ ...prevData, device_token: token }))
+                console.log(token, 'token');
+            }).catch(err => {
+                console.log(err);
+            })
         if (isLogin) {
             navigation.navigate('Home')
         }
@@ -32,7 +41,7 @@ const Login = ({ navigation }) => {
                         fontSize: 16, marginBottom: 10, color: '#4E4B66',
                         fontWeight: 'light'
                     }]}>Email :</Text>
-                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2, padding: 5 }}>
+                    <View style={{ borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2 }}>
                         <TextInput onChangeText={(text) => setParams(prevData => ({ ...prevData, email: text }))} placeholder='Write your email' style={{ fontSize: 15 }} autoCapitalize='none'
                             keyboardType='email-address' />
                     </View>
@@ -42,7 +51,7 @@ const Login = ({ navigation }) => {
                         fontSize: 16, marginBottom: 10, color: '#4E4B66',
                         fontWeight: 'light'
                     }]}>Password :</Text>
-                    <View style={[commonStyle.flexRow, { borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2, padding: 5 }]}>
+                    <View style={[commonStyle.flexRow, { borderColor: '#DEDEDE', borderRadius: 5, borderWidth: 2 }]}>
                         <TextInput onChangeText={(text) => setParams(prevData => ({ ...prevData, password: text }))} placeholder='Write your password' style={{ fontSize: 15, flex: 1 }} autoCapitalize='none'
                             secureTextEntry={showPassword ? false : true} />
                         <Text onPress={() => setShowPassword(!showPassword)} style={{

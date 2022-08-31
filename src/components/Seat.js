@@ -16,7 +16,7 @@ const SeatComponent = ({ navigation }) => {
     const route = useRoute();
     const [selectedSeat, setSelectedSeat] = useState([]);
     const [seatSold, setSeatSold] = useState(["A7", "B13", "C9", "D1", "E3", "F5", "G5"]);
-    const { hour, title, date } = route.params;
+    const { hour, title, date, id_movie, id_cinema } = route.params;
     // console.log(hour, 'dari hour', selectedSeat, 'dari selectedSeat');
 
     const GeneratorSeat = (first = 'A', last = 'G', count = 7, nextCount = false) => {
@@ -148,7 +148,7 @@ const SeatComponent = ({ navigation }) => {
         <SafeAreaView style={styles.wrappers}>
             <Animatable.View style={{ ...styles.wrapper, borderRadius: 2 }}>
                 <View style={{ ...styles.itemWrapper }}>
-                    <Image source={require('../../assets/image/ebv.png')} style={{
+                    <Image source={id_cinema === 9 ? require('../../assets/image/ebv.png') : require('../../assets/image/hiflix.png')} style={{
                         width: 75,
                         height: 40,
                         resizeMode: 'contain',
@@ -177,8 +177,12 @@ const SeatComponent = ({ navigation }) => {
             </Animatable.View>
             <View style={{ marginTop: 10, marginBottom: 30 }}>
                 <Pressable style={selectedSeat.length === 0 ? styles.btnDisable : styles.btnCheckout}
-                    onPress={() => navigation.navigate('Payment', {
+                    onPress={() => navigation.replace('Payment', {
                         subtotal: subtotal,
+                        id_movie,
+                        seat: selectedSeat,
+                        hour,
+                        id_cinema
                     })}
                     disabled={selectedSeat.length === 0}
                 >

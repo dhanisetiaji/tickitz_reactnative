@@ -41,6 +41,7 @@ const ShowImageScreen = ({ route }) => {
         [modalVisible, setModalVisible] = useState(false);
 
     const { GetAuth } = useSelector(state => state.auth)
+    console.log(GetAuth.data.id, 'GetAuth')
 
     const launchCameraAction = async () => {
         await requestCameraPermission();

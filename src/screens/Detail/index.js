@@ -373,6 +373,79 @@ const DetailScreen = ({ route, navigation }) => {
                                     hour: selectHour,
                                     title: title,
                                     date: release_date,
+                                    id_movie: id,
+                                    id_cinema: 9,
+                                })} style={{
+                                    ...commonStyle.button,
+                                    borderRadius: 2,
+                                    height: 40,
+                                    marginTop: 20,
+                                    marginBottom: 20,
+                                    elevation: 5,
+                                }} android_ripple={{ color: '#fff' }}>
+                                    <Text style={{ ...commonStyle.textWhite }}>Book Now</Text>
+                                </Pressable>
+                            </View>
+                            <View style={{
+                                marginTop: 20,
+                                backgroundColor: '#FFF',
+                                borderRadius: 10,
+                                paddingHorizontal: 10,
+                                paddingVertical: 20,
+                            }}>
+                                <Image source={require('../../../assets/image/hiflix.png')} style={{
+                                    width: 75,
+                                    height: 60,
+                                    resizeMode: 'contain',
+                                    alignSelf: 'center',
+                                }} />
+                                <Text style={{
+                                    ...commonStyle.textSecondary,
+                                    fontSize: 14,
+                                    textAlign: 'center',
+                                    borderBottomColor: '#dedede',
+                                    borderBottomWidth: 1,
+                                    paddingBottom: 10,
+                                    marginBottom: 10,
+                                }}>Whatever street No.12. South Purwokerto</Text>
+                                <FlatList
+                                    data={hours}
+                                    numColumns={4}
+                                    listKey={(index) => `${index}`}
+                                    renderItem={({ item: hour }) => (
+                                        <View style={{
+                                            marginHorizontal: 10,
+                                        }}>
+                                            <Pressable onPress={() => onSelect(hour)} android_ripple={{
+                                                color: '#333',
+                                            }}
+                                                style={
+                                                    selectHour === hour ? styless.bgDark : styless.bgWhite
+                                                }
+                                            >
+                                                <Text style={{
+                                                    paddingHorizontal: 10,
+                                                    paddingVertical: 10,
+                                                }}>{hour}</Text>
+                                            </Pressable>
+                                        </View>
+                                    )}
+                                />
+                                <View style={{
+                                    ...commonStyle.flexRow,
+                                    ...commonStyle.flexBetween,
+                                    marginTop: 20,
+                                    paddingHorizontal: 10,
+                                }}>
+                                    <Text style={{ ...commonStyle.textSecondary }}>Price</Text>
+                                    <Text style={{ ...commonStyle.textBlack }}>Rp. 40.000/seat</Text>
+                                </View>
+                                <Pressable onPress={() => navigation.navigate('Orders', {
+                                    hour: selectHour,
+                                    title: title,
+                                    date: release_date,
+                                    id_movie: id,
+                                    id_cinema: 10,
                                 })} style={{
                                     ...commonStyle.button,
                                     borderRadius: 2,

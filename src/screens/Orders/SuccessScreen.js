@@ -1,11 +1,50 @@
-import React from 'react'
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from 'react'
+import { Image, Pressable, ScrollView, StyleSheet, Text, View, BackHandler, Alert } from 'react-native'
 import * as Animatable from 'react-native-animatable';
 import { commonStyle } from '../../../helpers/commonStyle';
+import { Dimensions } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux'
+import { GetNotifStatus } from '../../redux/actions/Users';
 
-const SuccessScreen = () => {
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+const SuccessScreen = ({ navigation }) => {
+    const dispatch = useDispatch()
+    const { GetAuth } = useSelector(state => state.auth)
+    useEffect(() => {
+        dispatch(GetNotifStatus(GetAuth.data.token))
+        const backAction = () => {
+            Alert.alert("Hold on!", "Are you sure you want to go back?", [
+                {
+                    text: "Cancel",
+                    onPress: () => null,
+                    style: "cancel"
+                },
+                { text: "YES", onPress: () => navigation.replace('Order History') }
+            ]);
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
     return (
         <ScrollView style={styles.container}>
+            <Pressable onPress={() => navigation.replace('Order History')} style={{
+                padding: 10,
+            }}>
+                <Image source={require('../../../assets/image/icons/delete.png')} style={{
+                    width: 15,
+                    height: 15,
+                    resizeMode: 'contain',
+                    tintColor: '#333',
+                }} />
+            </Pressable>
             <View style={{ ...commonStyle.flexCenter }}>
                 <View style={styles.centerContainer}>
                     <Animatable.View style={styles.circle}>
@@ -41,17 +80,17 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     centerContainer: {
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        flex: 1,
-        backgroundColor: '#fff',
+        paddingVertical: windowHeight / 2 - 120,
     },
     textPay: {
         fontSize: 24,
         marginTop: 10,
         textAlign: 'center',
         color: '#fff',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     }
 
 })

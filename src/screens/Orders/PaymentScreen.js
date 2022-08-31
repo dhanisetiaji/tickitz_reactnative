@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import toRupiah from '@develoka/angka-rupiah-js'
 import { SectionList, Text, View, Pressable, StyleSheet, Image, FlatList, TextInput } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useRoute } from '@react-navigation/native'
 import { commonStyle } from '../../../helpers/commonStyle'
+import { addUserBooking, ChangeNotifStatus, GetNotifStatus } from '../../redux/actions/Users'
 // import Xendit from 'xendit-js-node'
 
 const urlImage = 'https://test.dhanz.me/static'
 
 const PaymentScreen = ({ navigation }) => {
-
+    const dispatch = useDispatch()
     const route = useRoute()
-    const { subtotal } = route.params
-    const { isLogin, GetDetail } = useSelector(state => state.auth)
+    const { subtotal, id_movie, hour, seat, id_cinema } = route.params
+    const { isLogin, GetDetail, GetAuth } = useSelector(state => state.auth)
 
     const [data, setData] = useState(),
         [paymentData, setPaymentData] = useState([
@@ -34,7 +35,19 @@ const PaymentScreen = ({ navigation }) => {
 
     const onSelect = (item) => {
         selectItem === item ? setSelectItem(null) : setSelectItem(item)
-        console.log(selectItem, 'selectItem');
+    }
+
+    const handlePayment = () => {
+        let data = {
+            id_movie: id_movie || '',
+            id_cinema: id_cinema || '',
+            id_user: GetDetail.data[0].id || '',
+            seat: JSON.stringify(seat) || '',
+            time: hour || '',
+        }
+        dispatch(addUserBooking(data, GetAuth.data.token))
+        dispatch(ChangeNotifStatus(true))
+        navigation.replace('success')
     }
 
     return (<>
@@ -85,7 +98,7 @@ const PaymentScreen = ({ navigation }) => {
                                 <TextInput onChangeText={(text) => setFormData(prevData => ({ ...prevData, phone: text }))} placeholder='Phone Number' style={{ fontSize: 15, marginLeft: 10 }} autoCapitalize='none' defaultValue={GetDetail.data[0].phone} keyboardType='numeric' />
                             </View>
                         </View>
-                        <Pressable onPress={() => navigation.navigate('success')} style={styles.btn}>
+                        <Pressable onPress={() => handlePayment()} style={styles.btn}>
                             <Text style={{ ...commonStyle.textWhite, fontSize: 18 }}>Pay your order</Text>
                         </Pressable>
                     </View>

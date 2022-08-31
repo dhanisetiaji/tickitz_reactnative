@@ -1,13 +1,15 @@
-import React from 'react';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/home'
 import Login from '../screens/auth/Login'
 import MoviesScreen from '../screens/Movies';
 import ProfileScreen from '../screens/profile';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import NotificationScreen from '../screens/Notification';
 import AuthScreen from '../screens/auth';
+import { GetNotification, GetNotifStatus } from '../redux/actions/Users';
+import NologinScreen from '../screens/Notification/Nologin';
 
 
 
@@ -16,8 +18,15 @@ const Tab = createBottomTabNavigator();
 
 
 const Tabs = () => {
-    const { isLogin, GetDetail } = useSelector(state => state.auth)
-    // console.log(isLogin, 'isloginbang')
+    const dispatch = useDispatch()
+    const { isLogin, GetAuth } = useSelector(state => state.auth)
+    const { NotifStatus } = useSelector(state => state.users)
+    useEffect(() => {
+        if (isLogin) {
+            dispatch(GetNotifStatus(GetAuth.data.token))
+        }
+    }, [dispatch, NotifStatus, isLogin])
+
     return (
         <Tab.Navigator
             screenOptions={{
@@ -63,8 +72,9 @@ const Tabs = () => {
                     </>),
                 }}
             />
-            <Tab.Screen name="Notification" component={NotificationScreen}
+            <Tab.Screen name="Notification" component={isLogin ? NotificationScreen : NologinScreen}
                 options={{
+
                     tabBarIcon: ({ focused }) => (<>
                         <Image source={require('../../assets/image/icons/notif.png')}
                             resizeMode='contain'
@@ -73,6 +83,23 @@ const Tabs = () => {
                                 height: 25,
                                 tintColor: focused ? '#5F2EEA' : '#4E4B66',
                             }} />
+                        {isLogin ? (
+                            <View style={{
+                                position: 'absolute',
+                                top: 15,
+                                right: 20,
+                                backgroundColor: NotifStatus >= 1 ? 'red' : 'transparent',
+                                width: 15,
+                                height: 15,
+                                borderRadius: 5,
+                                justifyContent: 'center',
+                            }} ><Text style={{
+                                color: NotifStatus >= 1 ? '#fff' : 'transparent',
+                                fontSize: 10,
+                                textAlign: 'center',
+                            }}
+                            >{NotifStatus}</Text></View>
+                        ) : ''}
                     </>)
                 }}
             />
